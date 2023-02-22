@@ -14,7 +14,7 @@ SECRET_KEY = "django-insecure-rwo0g1r=%rc6@hg0b0waz!vmb83e0x45j)nv4&&)z^iq^k-08@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -109,8 +109,8 @@ USE_TZ = True
 STATIC_URL = "/static/"
 COMPRESS_ROOT = BASE_DIR / 'static'
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
+STATIC_ROOT = BASE_DIR / 'static/files'
+COMPRESS_ENABLED = True
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
