@@ -1,0 +1,45 @@
+{% extends '_base.html' %}
+{% load static %}
+{% block title %}
+Subir imagen
+{% endblock %}
+{% block content %}
+
+
+
+<div class="">
+    <div class="p-8 lg:w-1/2 mx-auto">
+        <div class="bg-gray-100 rounded-b-lg py-12 px-4 lg:px-24">
+            <p class="text-center text-sm text-gray-500 font-light"> Sube solo imagenes xd</p>
+            <form class="mt-6" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="mt-4 flex items-center text-gray-500"> <input type="checkbox" id="remember" name="remember"
+                        class="mr-3" />
+                        <label for="remember">Aceptas que estas cargo de la imagen</label>
+                </div>
+                <div class="flex items-center justify-center mt-8">
+                    <button type="submit"
+                        class="text-white py-2 px-4 uppercase rounded bg-indigo-500 hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+                        Subir
+                    </button>
+                </div>
+            </form>
+            
+
+            
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+</script>
+
+
+
+{% endblock %}
