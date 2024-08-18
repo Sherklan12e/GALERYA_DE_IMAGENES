@@ -108,6 +108,20 @@ def delete_image(request, id):
 
 
 
+def search(request):
+    query = request.GET.get('q', '')  # Obtén el parámetro de búsqueda de la URL
+    if query:
+        # Filtra los locales por nombre, dirección, y descripción usando la búsqueda insensible a mayúsculas/minúsculas
+        results = Local.objects.filter(
+            nombre__icontains=query
+        ) | Image.objects.filter(
+            direccion__icontains=query
+        ) | Image.objects.filter(
+            descripcion__icontains=query
+        )
+    else:
+        results = Image.objects.none()  # Si no hay consulta, no se muestran resultados
 
+    return render(request, 'index.html', {'results': results})
 
 

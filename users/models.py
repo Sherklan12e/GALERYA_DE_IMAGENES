@@ -55,5 +55,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/')
+    nombre = models.CharField(max_length=255)
 
     
