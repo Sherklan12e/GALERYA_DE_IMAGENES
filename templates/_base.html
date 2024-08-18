@@ -1,0 +1,110 @@
+<!-- templates/_base.html -->
+
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} {% endblock %} |PSher</title>
+    <link rel="stylesheet" href="{% static 'src/estilos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/admin.css' %}">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'images/icon/we.png' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" />
+    <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+   
+    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+   
+    <script src="{% static 'js/main.js' %}"></script>
+
+</head>
+
+
+
+<body class=" ">
+
+
+
+
+    {% include 'layouts/navbar.html' %}
+
+    {% if messages %}
+    {% for message in messages %}
+    
+
+    
+    <div  x-data="app" class="min-w-screen flex min-h-screen items-center justify-center">
+        <!-- toast -->
+        <button style="background-color: rgb(53, 68, 237); type="button" @click="closeToast()" x-show="open" x-transition.duration.300ms
+            class="fixed top-4 right-4 z-50 rounded-md  px-4 py-2  transition ">
+            <div class="flex items-center space-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                </svg>
+                <p  class="font-bold text-white">{{ message }}</p>
+            </div>
+        </button>
+        
+    </div>
+
+
+
+
+    {% endfor %}
+    {% endif %}
+
+
+
+
+    <div class="">
+        {% block content %}
+        {% endblock content %}
+    </div>
+
+
+    {% include 'layouts/footer.html' %}
+
+    
+
+    <!-- page -->
+    
+
+    <script>
+        let timer;
+
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("app", () => ({
+                open: true,
+
+                openToast() {
+                    if (this.open) return;
+                    this.open = true;
+
+                    // reset time to 0 second
+                    clearTimeout(timer);
+
+                    // auto close toast after 5 seconds
+                    timer = setTimeout(() => {
+                        this.open = false;
+                    }, 5000);
+                },
+
+                closeToast() {
+                    this.open = false;
+                },
+            }));
+        });
+    </script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+
+</html>
